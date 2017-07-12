@@ -30,8 +30,57 @@ fun main(args: Array<String>) {
     var t4:Double = 4.4
     var t5 ="Hello"
     print("when Test : ${whenTest(t1)}\n${whenTest(t2)}\n${whenTest(t3)}\n${whenTest(t4)}\n${whenTest(t5)}\n")
+    var x:Int = 0
+    var n:Int = 4
+    for(x in 1..n)
+        print("num : $x \n")
+    println("final : $x")
     print("")
     //Any type 도 있음
+    var furit = listOf("apple","orange","pineapple","banana","avocado")
+    //filter 된 얘들만 남고, 남은 애들을 소팅함.
+    furit.filter{it.startsWith("a")}.sortedBy{it}.map{it.toUpperCase()}.forEach{println(it)}
+    var numbers = ArrayList<Int>()
+
+    for(x in 1..10)
+        numbers.add(x)
+    numbers.filter{it < 5}.sortedByDescending {it}.forEach{println("ArrayList Sorted By Desc $it")}
+    var byteV = 0b1000_1000
+    var intV:Int = byteV
+    println("type Casting : $intV")
+
+    var c : Char = '5'
+    if(c in '1'..'5')
+        println("1 .. 5 value is ${c.toInt() - 48}")
+    if( !(c in '1'..'3'))
+        println("1 .. 3 value is ${c.toDouble().toInt() - 48.toDouble().toInt()}")
+    var arrays = Array(10,{i -> i.toInt()})
+
+    for(x in 0..9)
+        arrays[x] = x
+    var arrayCopy:Array<Int> = arrays.filter{it >3 }.sortedBy{it}.toTypedArray()
+    // 저장하지 않으면 저장 안됌.
+    for(x in 0..(arrayCopy.size-1))
+        print("copied : ${arrayCopy[x]}")
+
+    for(x in 0..(arrays.size-1))
+    println("\noriginal : ${arrays.get(x)}")
+
+    var rawString = """"안녕하세요"
+"반가워요"
+"꺄아아악"
+"""
+    print(rawString)
+    x = 77
+    var res = when(x){
+        in 90..100 -> "A"
+        in 80..99 -> "B"
+        in 70..79 -> "C"
+        else -> "F"
+    }
+    println(res)
+
+    var testMap = listOf(1,2,3,4)
 
 
 }
@@ -58,7 +107,8 @@ fun whenTest(obj:Any):String=
             1 -> "One" // 숫자는 아마도 자동으로 Int 형으로 받는듯
             "Hello" -> "Greeting"
             is Long -> "Variable is Long"
-            !is String -> "Not a String"
+            is Double -> "Double"
+            is String -> "String"
             else -> "Unknown"
         }
 fun parseInt(str:String):Int?{

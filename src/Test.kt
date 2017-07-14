@@ -5,6 +5,7 @@
 import javafx.beans.binding.When
 import java.util.*;
 
+
 fun main(args: Array<String>) {
     print("Hello World!\n");
     var a =1
@@ -80,9 +81,18 @@ fun main(args: Array<String>) {
     }
     println(res)
 
-    var testMap = listOf(1,2,3,4)
+    var person:Person = Person("Namjin","Cho")
+    person.setAge(25)
+    println("I create ${person.getFirstName()} ${person.getLastName()} and age is ${person.getAge()}")
+    var person2:Person = Person(26)
+    person2.setFirstName("Chiyoon")
+    person2.setLastName("Song")
+    println("I create ${person2.getFirstName()} ${person2.getLastName()} and age is ${person2.getAge()}")
 
-
+    var aa:AA = AA(1)
+    var bb:BB = BB(2)
+    aa.print()
+    bb.print()
 }
 fun max(a:Int,b:Int):Int{
     if(a>b)
@@ -113,4 +123,28 @@ fun whenTest(obj:Any):String=
         }
 fun parseInt(str:String):Int?{
     return str.toInt()
+}
+
+open class AA(x:Int){
+    init {
+        println("AA is Created ${x}")
+    }
+    open fun print(){
+        print("printed in AA")
+    }
+}
+class BB(x:Int) : AA(x){
+    var str:String="AA"
+        get()
+        {
+            return field
+        }
+
+    init{
+        println("BB is created ${x}")
+    }
+    override fun print()
+    {
+        print("printed in BB")
+    }
 }
